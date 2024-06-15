@@ -16,7 +16,9 @@ public class Main {
             System.out.println("2. Tabla de multiplicar");
             System.out.println("3. Calculadora basica");
             System.out.println("4. Numero primo o no");
-            System.out.println("5. Salir");
+            System.out.println("5. Gestion de estudiantes");
+            System.out.println("6. Lista de estudiantes");
+            System.out.println("7. Salir");
             System.out.println("====================");
             System.out.print("Ingrese su opcion: ");
             int opcion = scanner.nextInt();
@@ -34,8 +36,13 @@ public class Main {
                     break;
                 case 4:
                     verificarNumeroPrimo();
-                    break;
                 case 5:
+                    gestionDeEstudiantes();
+                    break;
+                case 6:
+                    listaDeEstudiantes();
+                    break;
+                case 7:
                     salir = true;
                     System.out.println("Saliendo del programa...");
                     break;
@@ -135,4 +142,59 @@ public class Main {
         }
     }
 
+    private static void listaDeEstudiantes() {
+        System.out.println("Lista de estudiantes:");
+        for (String estudiante : estudiantes) {
+            System.out.println(estudiante);
+        }
     }
+
+    private static void gestionDeEstudiantes() {
+        boolean gestionSalir = false;
+
+        while (!gestionSalir) {
+            System.out.println("\n====================");
+            System.out.println("  Gestion de estudiantes");
+            System.out.println("====================");
+            System.out.println("1. Agregar estudiante");
+            System.out.println("2. Eliminar estudiante");
+            System.out.println("3. Volver al menú principal");
+            System.out.println("====================");
+            System.out.print("Ingrese su opcion: ");
+            int opcion = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcion) {
+                case 1:
+                    agregarEstudiante();
+                    break;
+                case 2:
+                    eliminarEstudiante();
+                    break;
+                case 3:
+                    gestionSalir = true;
+                    break;
+                default:
+                    System.out.println("Error: Opción no válida. Por favor, seleccione una opción válida.");
+                    break;
+            }
+        }
+    }
+
+    private static void agregarEstudiante() {
+        System.out.print("Ingrese el nombre y calificacion del estudiante a agregar: ");
+        String nombre = scanner.nextLine();
+        estudiantes.add(nombre);
+        System.out.println("Estudiante \"" + nombre + "\" agregado correctamente.");
+    }
+
+    private static void eliminarEstudiante() {
+        System.out.print("Ingrese el nombre del estudiante y calificacion a eliminar: ");
+        String nombre = scanner.nextLine();
+        if (estudiantes.remove(nombre)) {
+            System.out.println("Estudiante \"" + nombre + "\" eliminado correctamente.");
+        } else {
+            System.out.println("Error: Estudiante no encontrado.");
+        }
+    }
+}
