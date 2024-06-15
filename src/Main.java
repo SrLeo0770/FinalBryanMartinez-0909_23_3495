@@ -1,11 +1,13 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
-    private static ArrayList<String> estudiantes = new ArrayList<>();
+    private static List<String> estudiantes = new ArrayList<>();
 
     public static void main(String[] args) {
+        Menu menu = new Menu();
         boolean salir = false;
 
         while (!salir) {
@@ -16,31 +18,32 @@ public class Main {
             System.out.println("2. Tabla de multiplicar");
             System.out.println("3. Calculadora basica");
             System.out.println("4. Numero primo o no");
-            System.out.println("5. Gestion de estudiantes");
-            System.out.println("6. Lista de estudiantes");
+            System.out.println("5. Lista de estudiantes");
+            System.out.println("6. Gestion de estudiantes");
             System.out.println("7. Salir");
             System.out.println("====================");
             System.out.print("Ingrese su opcion: ");
             int opcion = scanner.nextInt();
-            scanner.nextLine();
+            scanner.nextLine(); // Consume newline
 
             switch (opcion) {
                 case 1:
-                    juntarResultados();
+                    menu.juntarResultados();
                     break;
                 case 2:
-                    tablaDeMultiplicar();
+                    menu.tablaDeMultiplicar();
                     break;
                 case 3:
-                    calculadoraBasica();
+                    menu.calculadoraBasica();
                     break;
                 case 4:
-                    verificarNumeroPrimo();
+                    menu.verificarNumeroPrimo();
+                    break;
                 case 5:
-                    gestionDeEstudiantes();
+                    menu.listaDeEstudiantes();
                     break;
                 case 6:
-                    listaDeEstudiantes();
+                    menu.gestionDeEstudiantes();
                     break;
                 case 7:
                     salir = true;
@@ -54,8 +57,13 @@ public class Main {
 
         scanner.close();
     }
+}
 
-    private static void juntarResultados() {
+class Menu {
+    private static Scanner scanner = new Scanner(System.in);
+    private static List<String> estudiantes = new ArrayList<>();
+
+    public void juntarResultados() {
         System.out.print("Ingrese el primer texto: ");
         String texto1 = scanner.nextLine();
         System.out.print("Ingrese el segundo texto: ");
@@ -67,11 +75,11 @@ public class Main {
         System.out.println("Resultado: " + resultado);
     }
 
-    private static String concatenarTextos(String texto1, String texto2, String texto3) {
+    private String concatenarTextos(String texto1, String texto2, String texto3) {
         return texto1 + texto2 + texto3;
     }
 
-    private static void tablaDeMultiplicar() {
+    public void tablaDeMultiplicar() {
         System.out.print("Ingrese un número para mostrar su tabla de multiplicar: ");
         int numero = scanner.nextInt();
         for (int i = 1; i <= 10; i++) {
@@ -79,7 +87,7 @@ public class Main {
         }
     }
 
-    private static void calculadoraBasica() {
+    public void calculadoraBasica() {
         System.out.print("Ingrese el primer número: ");
         double num1 = scanner.nextDouble();
         System.out.print("Ingrese el segundo número: ");
@@ -119,7 +127,7 @@ public class Main {
         }
     }
 
-    private static void verificarNumeroPrimo() {
+    public void verificarNumeroPrimo() {
         System.out.print("Ingrese un número para verificar si es primo: ");
         int numero = scanner.nextInt();
         boolean esPrimo = true;
@@ -142,14 +150,14 @@ public class Main {
         }
     }
 
-    private static void listaDeEstudiantes() {
+    public void listaDeEstudiantes() {
         System.out.println("Lista de estudiantes:");
         for (String estudiante : estudiantes) {
             System.out.println(estudiante);
         }
     }
 
-    private static void gestionDeEstudiantes() {
+    public void gestionDeEstudiantes() {
         boolean gestionSalir = false;
 
         while (!gestionSalir) {
@@ -162,7 +170,7 @@ public class Main {
             System.out.println("====================");
             System.out.print("Ingrese su opcion: ");
             int opcion = scanner.nextInt();
-            scanner.nextLine();
+            scanner.nextLine(); // Consume newline
 
             switch (opcion) {
                 case 1:
@@ -181,15 +189,15 @@ public class Main {
         }
     }
 
-    private static void agregarEstudiante() {
+    private void agregarEstudiante() {
         System.out.print("Ingrese el nombre y calificacion del estudiante a agregar: ");
         String nombre = scanner.nextLine();
         estudiantes.add(nombre);
         System.out.println("Estudiante \"" + nombre + "\" agregado correctamente.");
     }
 
-    private static void eliminarEstudiante() {
-        System.out.print("Ingrese el nombre del estudiante y calificacion a eliminar: ");
+    private void eliminarEstudiante() {
+        System.out.print("Ingrese el nombre y calificacion del estudiante a eliminar: ");
         String nombre = scanner.nextLine();
         if (estudiantes.remove(nombre)) {
             System.out.println("Estudiante \"" + nombre + "\" eliminado correctamente.");
