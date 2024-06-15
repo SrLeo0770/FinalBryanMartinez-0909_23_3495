@@ -24,7 +24,7 @@ public class Main {
             System.out.println("====================");
             System.out.print("Ingrese su opcion: ");
             int opcion = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             switch (opcion) {
                 case 1:
@@ -170,8 +170,7 @@ class Menu {
             System.out.println("====================");
             System.out.print("Ingrese su opcion: ");
             int opcion = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
-
+            scanner.nextLine();
             switch (opcion) {
                 case 1:
                     agregarEstudiante();
